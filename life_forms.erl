@@ -61,8 +61,26 @@ glider() ->
 	].
 
 
-
 % Utility
+
+% Add a life form (in the form of a matrix, as above)
+% with the specified coordinates as the top-left
+add(Matrix, {X, Y}) ->
+	lists:foldl(fun add_row/2, {X, Y}, Matrix),
+	ok.
+
+add_row(Row, {X, Y}) ->
+	lists:foldl(fun add_cell/2, {X, Y}, Row),
+	{X, Y+1}.
+
+% "Add" an empty cell (do nothing, just increment the column counter)
+add_cell(o, {X, Y}) -> {X+1, Y};
+% Add a full cell:
+add_cell(x, P={X, Y}) ->
+	cell_store:set_cell(P, true),
+	{X+1, Y}.
+
+% Transformations that can be applied to life forms
 mirror_x(Matrix) -> [lists:reverse(L) || L <- Matrix].
 mirror_y(Matrix) -> lists:reverse(Matrix).
 rotate_l(Matrix) -> rotate_l(Matrix, []).

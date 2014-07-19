@@ -7,6 +7,7 @@ print() ->
 
 print({StartX, StartY}, {FinX, FinY}) ->
 	[print_row(StartX, FinX, Y) || Y <- lists:seq(StartY, FinY)],
+	io:fwrite("~n", []),
 	ok.
 
 print_row(StartX, FinX, Y) ->
