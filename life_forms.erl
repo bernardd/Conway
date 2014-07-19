@@ -66,9 +66,9 @@ glider() ->
 mirror_x(Matrix) -> [lists:reverse(L) || L <- Matrix].
 mirror_y(Matrix) -> lists:reverse(Matrix).
 rotate_l(Matrix) -> rotate_l(Matrix, []).
-rotate_r(Matrix) -> lists:reverse(rotate_l(Matrix, [])).
+rotate_r(Matrix) -> lists:reverse([lists:reverse(Row) || Row <- rotate_l(Matrix, [])]).
 
+rotate_l(Matrix, Acc) when hd(Matrix) =:= [] -> Acc;
 rotate_l(Matrix, Acc) ->
-	rotate_l([tl(Row) || Row <- Matrix], [[hd(Row) || Row <- Matrix] | Acc])
+	rotate_l([tl(Row) || Row <- Matrix], [[hd(Row) || Row <- Matrix] | Acc]).
 
-	add(Matrix)
