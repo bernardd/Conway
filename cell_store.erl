@@ -17,7 +17,7 @@ get_cell(Pos) ->
 	ets:lookup(?TABLE, Pos) =/= [].
 
 all_cells() ->
-	ets:tab2list(?TABLE).
+	[C || {C, true} <- ets:tab2list(?TABLE)].
 
 save() ->
 	{ok, Dets} = dets:open_file(?TABLE, []),

@@ -4,7 +4,8 @@
 
 run_step() ->
 	Changes = lists:foldl(fun maybe_change/2, [], cells_to_process()),
-	[cell_store:set_cell(C, State) || {C, State} <- Changes].
+	[cell_store:set_cell(C, State) || {C, State} <- Changes],
+	ok.
 
 maybe_change(C, Acc) ->
 	CurrState = cell_store:get_cell(C),
@@ -14,7 +15,7 @@ maybe_change(C, Acc) ->
 	end.
 
 cells_to_process() ->
-	lists:usort([cells_to_process(C) || C <- cell_store:all_cells()]).
+	lists:usort(lists:flatten([cells_to_process(C) || C <- cell_store:all_cells()])).
 
 cells_to_process({XIn, YIn}) ->
 	[{X, Y} || X <- adjacent_values(XIn), Y <- adjacent_values(YIn)].
