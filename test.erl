@@ -22,13 +22,14 @@ setup_gliders() ->
 % Iterate the game with 400ms delay between each step.
 % Prints the grid from 0,0 to 100,100 at each step.
 run() ->
+	printer:print(),
 	Pid = spawn(fun loop/0),
 	io:get_line(""), % Wait until Enter is pressed
 	Pid ! stop.
 
 loop() ->
-	printer:print(),
 	conway:run_step(),
+	printer:print(),
 	receive
 		stop -> ok
 	after 400 ->

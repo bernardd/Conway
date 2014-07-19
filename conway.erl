@@ -24,7 +24,7 @@ maybe_change(C, Acc) ->
 cells_to_process() ->
 	lists:usort(lists:flatten([cells_to_process(C) || C <- cell_store:all_cells()])).
 
-% Get all cells adjacent to a given cell
+% Get all cells adjacent to a given cell as well as the cell itself
 cells_to_process({XIn, YIn}) ->
 	[{X, Y} || X <- adjacent_values(XIn), Y <- adjacent_values(YIn)].
 
