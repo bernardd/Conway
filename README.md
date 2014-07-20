@@ -7,72 +7,72 @@ Running:
 
 Compilation is pretty trivial:
 
-erlc *.erl
+    erlc *.erl
 
 The UI, such as it is, is run entirely within the erlang shell. First, initialise the cell store:
 
-> cell_store:init().
-cell_store
+    > cell_store:init().
+    cell_store
 
 Now individual cells can be set to live thus:
 
-> cell_store:set_cell({5, 5}, true).
-true
+    > cell_store:set_cell({5, 5}, true).
+    true
 
 That's a bit cumbersome, though, so there's a set of pre made common life forms in the life_forms module. You can add them like this:
 
-> life_forms:add(life_forms:glider(), {30, 50}).
-ok
+    > life_forms:add(life_forms:glider(), {30, 50}).
+    ok
 
 That will add a glider with top-left coordinates of 30,50.
 You can also transform the pre-set life forms using the mirror_x, mirror_y, rotate_l and rotate_r functions (to flip horizontaly, flip vertically, rotate counter-clockwise 90 degrees and rotate clockwise 90 degrees respectively):
 
-> life_forms:add( life_forms:rotate_r( life_forms:mirror_x( life_forms:loaf() )), {10, 10}).
-ok
+    > life_forms:add( life_forms:rotate_r( life_forms:mirror_x( life_forms:loaf() )), {10, 10}).
+    ok
 
 Running the simulation can be done a step at a time:
 
-> conway:run_step().
-ok
+    > conway:run_step().
+    ok
 
 To display the 100x100 grid starting at 0,0, just call
 
-> printer:print().
-<Grid>
-ok
+    > printer:print().
+    <Grid>
+    ok
 
 You can specify a particular rectangle to print like this:
 
-> printer:print({10,10}, {20, 20}).
-<11x11 grid>
-ok
+    > printer:print({10,10}, {20, 20}).
+    <11x11 grid>
+    ok
 
 To run repeated iterations at 400ms intervals, printing out the 100x100 grid at each step you can use:
 
-> test:run().
-....
+    > test:run().
+    ....
 
 This will keep running until you press RETURN/ENTER.
 
 Persistant storage is provided by:
 
-> cell_store:save().
-ok
+    > cell_store:save().
+    ok
 
 and
 
-> cell_store:load().
-ok
+    > cell_store:load().
+    ok
 
 (Note that for the sake of simplicity this will always save to/load from a file called 'cell_store' in the current working directory).
 
 Finally, the test module also contains a couple of example starting states, one with three different life forms and one with four gliders. To use those start states, run:
 
-> test:setup_example().
+    > test:setup_example().
 
 or
 
-> test:setup_gliders().
+    > test:setup_gliders().
 
 respectively. test:run/0 can then be used as described above.
 
