@@ -1,6 +1,9 @@
 -module(cell_store).
 
--compile(export_all). % Lazy
+-compile(export_all).
+
+% This module provides a simple interface to an ETS table for storing/retrieving the location of
+% living cells.
 
 -define(TABLE, cell_store).
 
@@ -15,6 +18,8 @@ init() ->
 
 % Set the state of a cell ('true' for occupied, 'false' otherwise)
 set_cell(Pos, true) ->
+	% Wrap the coordinates in a tuple so that the index is on the tuple {X,Y} rather
+	% than just a single coordinate
 	ets:insert(?TABLE, {Pos});
 set_cell(Pos, false) ->
 	ets:delete(?TABLE, Pos).

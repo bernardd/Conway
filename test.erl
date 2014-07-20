@@ -2,6 +2,8 @@
 
 -compile(export_all).
 
+% Some handy functions for testing the Game of Life
+
 % Set up an initial state with three different life forms
 setup_example() ->
 	cell_store:init(),
@@ -13,7 +15,7 @@ setup_example() ->
 % Set up an initial state with four gliders
 setup_gliders() ->
 	cell_store:init(),
-	life_forms:add(life_forms:mirror_y(life_forms:glider()), {30, 30}),
+	life_forms:add(life_forms:rotate_r(life_forms:rotate_r(life_forms:glider())), {30, 30}),
 	life_forms:add(life_forms:rotate_r(life_forms:glider()), {20, 40}),
 	life_forms:add(life_forms:rotate_l(life_forms:glider()), {40, 40}),
 	life_forms:add(life_forms:glider(), {30, 50}),

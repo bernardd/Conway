@@ -1,6 +1,14 @@
 -module(conway).
 
--compile(export_all). % Lazy :)
+-compile(export_all).
+
+% This module implements the actual Game of Life algorithm.
+% It works in the following manner:
+% * Collect a list of all cells that require checking. That's any cell that is alive or
+%   adjacent to a live one (including diagonally)
+% * Iterate through the list checking the new state of each cell
+% * If that cell should be changed from its current state, add it to a list of changes
+% * Once all cells have been processed, push that list of changes back to the cell store
 
 % Run a single step of the game
 run_step() ->

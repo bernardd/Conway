@@ -2,6 +2,8 @@
 
 -compile(export_all).
 
+%% Sample lifeforms (from Wikipedia) %%
+
 % Still life:
 
 block() ->
@@ -61,7 +63,7 @@ glider() ->
 	].
 
 
-% Utility
+%% Utility %%
 
 % Add a life form (in the form of a matrix, as above)
 % with the specified coordinates as the top-left
@@ -86,6 +88,7 @@ mirror_y(Matrix) -> lists:reverse(Matrix).
 rotate_l(Matrix) -> rotate_l(Matrix, []).
 rotate_r(Matrix) -> lists:reverse([lists:reverse(Row) || Row <- rotate_l(Matrix, [])]).
 
+% Helper functions (not for external use):
 rotate_l(Matrix, Acc) when hd(Matrix) =:= [] -> Acc;
 rotate_l(Matrix, Acc) ->
 	rotate_l([tl(Row) || Row <- Matrix], [[hd(Row) || Row <- Matrix] | Acc]).

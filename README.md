@@ -80,9 +80,9 @@ respectively. test:run/0 can then be used as described above.
 Limitations/Notes:
 
 * The field is effectively unlimited in size due to Erlang's arbitrary precision integers - at least until you run out of memory. (I realise the spec was technically to support 2^64 x 2^64, but I figured removing that limit would not be a big problem - I can add it in if it's a scrict rather than minimum requirement).
-* There's no protection on Cells table - someone could theoretically save/load it while the simulation is running and get an inconsistant state.
+* There's no protection on the cell storage - someone could theoretically save/load it while the simulation is running and get an inconsistant state.
 * There's no real concurrency (even though we're working with Erlang) - there's a few ways to approach concurrency in CGoL but they all complicate the implementation significantly, and the request was for a "simple, minimalist" solution :)
-* Even ignoring ways to parallelise it, there's a couple of possibilities for optimisation that spring to mind, particularly around the calculation of cells that require processing, but again those would introduce complexity.
+* Even ignoring ways to parallelise it, there's a couple of possibilities for optimisation that spring to mind, particularly around the calculation of cells that require processing, but again those would add complexity.
 * Saving/loading always goes to/from the same file name in the current working directory.
 * cell_store is just a very thin wrapper around ets to make it relatively easy to swap in a different store to test performance.
 * In the interests of simplicity, in true erlang style there's basically no error handling (even where a proper Erlang app would have it, like file access).
