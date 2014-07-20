@@ -1,9 +1,9 @@
 Conway
 ======
 
-Conway's Game of Life
+## Conway's Game of Life
 
-Running:
+#### Running:
 
 Compilation is pretty trivial:
 
@@ -77,7 +77,7 @@ or
 respectively. test:run/0 can then be used as described above.
 
 
-Limitations/Notes:
+#### Limitations/Notes:
 
 * The field is effectively unlimited in size due to Erlang's arbitrary precision integers - at least until you run out of memory. (I realise the spec was technically to support 2^64 x 2^64, but I figured removing that limit would not be a big problem - I can add it in if it's a scrict rather than minimum requirement).
 * There's no protection on the cell storage - someone could theoretically save/load it while the simulation is running and get an inconsistant state.
